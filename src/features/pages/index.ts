@@ -54,7 +54,7 @@ const initialState: PagesState = pagesAdapter.getInitialState({
 
 // Thunks
 export const fetchPages = createAsyncThunk('pages/fetchPages', async () => {
-  const response = await axios.get<Page[]>('http://localhost:8080/wp-json/wp/v2/pages');
+  const response = await axios.get<Page[]>('http://wp.skyloproductions.com/wp-json/wp/v2/pages');
   return response.data;
 });
 
