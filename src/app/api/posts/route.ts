@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+export const revalidate = 0;
 import { IncomingMessage } from 'http';
 import * as http from 'http';
 import { NextResponse } from 'next/server';
@@ -47,7 +49,9 @@ const fetchThisUrlUsingNodejs = async (params: http.RequestOptions, postData?: s
 
 
 export async function GET(request: Request) {
-  const res = await fetchThisUrlUsingNodejs(options);
-  const data = await res;
+  const res = await fetch("http://wp.skyloproductions.com/wp-json/wp/v2/posts");
+  const data = await res.json();
+  console.log(data)
+
   return NextResponse.json(data);
 }
