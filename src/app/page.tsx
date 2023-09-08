@@ -1,29 +1,51 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
 
-async function getData() {
-  const res = await fetch(`http://louisalemar-10up.local/wp-json/wp/v2/posts`)
-  const data = await res.json()
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchPosts, selectAllPosts } from '@/features/posts';
+import { AppDispatch } from '@/redux/store';
+import DOMPurify from 'dompurify';
+import { fetchPages } from '@/features/pages';
 
-  if (!data) {
-    throw new Error("Failed to fetch data from wordpress")
+const PostsList: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
+
+  // Fetch posts from the API when the component mounts
+  useEffect(() => {
+    dispatch(fetchPosts());
+    dispatch(fetchPages());
+  }, [dispatch]);
+
+  // Use the selector to get all posts from the state
+  const posts = useSelector(selectAllPosts);
+  const postsStatus = useSelector((state: any) => state.posts.status);
+  const error = useSelector((state: any) => state.posts.error);
+
+  if (postsStatus === 'loading') {
+    return <div>Loading...</div>;
   }
 
-  return data
-}
+  if (postsStatus === 'failed') {
+    return <div>Error: {error}</div>;
+  }
 
-export default async function Home() {
-  const data = await getData()
+  console.log(posts);
 
   return (
-    <main className={styles.main}>
-      {data.map((post: any) => {
-        return (
-          <div key={post.id}>
-            <h1>{post.title.rendered}</h1>
-          </div>
-        )
-      })}
-    </main>
-  )
-}
+    <div>
+      <h2>Posts</h2>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <h3>{post.title.rendered}</h3>
+            <p
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content.rendered) }}
+            ></p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default PostsList;
