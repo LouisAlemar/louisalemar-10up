@@ -35,7 +35,7 @@ const initialState: CommentsState = commentsAdapter.getInitialState({
 
 // Thunks
 export const fetchComments = createAsyncThunk('comments/fetchComments', async (postId: number) => {
-  const response = await axios.get<Comment[]>(`http://localhost:8080/wp-json/wp/v2/comments?post=${postId}`);
+  const response = await axios.get<Comment[]>(`http://wp.skyloproductions.com/wp-json/wp/v2/comments?post=${postId}`);
   return response.data;
 });
 

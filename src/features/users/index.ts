@@ -34,7 +34,7 @@ const initialState: UsersState = usersAdapter.getInitialState({
 
 // Thunks
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
-  const response = await axios.get<User[]>('http://localhost:8080/wp-json/wp/v2/users');
+  const response = await axios.get<User[]>('http://wp.skyloproductions.com/wp-json/wp/v2/users');
   return response.data;
 });
 

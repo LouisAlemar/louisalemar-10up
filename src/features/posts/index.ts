@@ -93,7 +93,7 @@ export const fetchPosts = createAsyncThunk(
   'posts/fetchPosts',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get<Post[]>('http://localhost:8080/wp-json/wp/v2/posts');
+      const response = await axios.get<Post[]>('http://wp.skyloproductions.com/wp-json/wp/v2/posts');
       return response.data;
     } catch (err: any) {
       // If there's an error, it will be passed into the rejected action

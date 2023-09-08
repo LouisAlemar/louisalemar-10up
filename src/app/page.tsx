@@ -6,6 +6,7 @@ import { fetchPosts, selectAllPosts } from '@/features/posts';
 import { AppDispatch } from '@/redux/store';
 import DOMPurify from 'dompurify';
 import { fetchPages } from '@/features/pages';
+import { fetchUsers } from '@/features/users';
 
 const PostsList: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -14,6 +15,7 @@ const PostsList: React.FC = () => {
   useEffect(() => {
     dispatch(fetchPosts());
     dispatch(fetchPages());
+    dispatch(fetchUsers());
   }, [dispatch]);
 
   // Use the selector to get all posts from the state
