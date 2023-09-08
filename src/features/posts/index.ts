@@ -88,22 +88,33 @@ const initialState = postsAdapter.getInitialState({
   error: null as string | null,
 });
 
+//http://wp.skyloproductions.com/wp-json/wp/v2/posts
+
 // Define the thunk
-export const fetchPosts = createAsyncThunk(
-  'posts/fetchPosts',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await fetch("http://wp.skyloproductions.com/wp-json/wp/v2/posts", {
-        method: "GET",
-      });
-      const data = await response.json()
-      return data;
-    } catch (err: any) {
-      // If there's an error, it will be passed into the rejected action
-      return rejectWithValue(err.response.data);
-    }
-  }
-);
+// export const fetchPosts = createAsyncThunk(
+//   'posts/fetchPosts',
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const response = await fetch("/api/posts/", {
+//         method: "GET",
+//       });
+//       const data = await response.json()
+//       return data;
+//     } catch (err: any) {
+//       // If there's an error, it will be passed into the rejected action
+//       return rejectWithValue(err.response.data);
+//     }
+//   }
+// );
+
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
+  const response = await fetch("/api/posts/", {
+    method: "GET",
+  });
+  // console.log('response', response)
+  return await response.json();
+});
+
 
 // Define the slice
 const postsSlice = createSlice({
