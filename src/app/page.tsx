@@ -19,7 +19,9 @@ export default async function Home() {
     <main className={styles.main}>
       {data.map((post: any) => {
         return (
-          <p key={post.id}>{post.title.rendered}</p>
+          <div key={post.id}>
+            <h1>{post.title.rendered}</h1>
+          </div>
         )
       })}
     </main>
