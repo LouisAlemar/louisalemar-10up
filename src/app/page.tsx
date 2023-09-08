@@ -31,6 +31,8 @@ const PostsList: React.FC = () => {
     return <div>Error: {error}</div>;
   }
 
+  console.log(posts)
+
   return (
     <div>
       <h2>Posts</h2>
