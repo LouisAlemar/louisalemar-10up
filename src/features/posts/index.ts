@@ -109,7 +109,7 @@ const initialState = postsAdapter.getInitialState({
 
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
   const response = await fetch("/api/posts/", {
-    method: "GET",
+    cache: "no-store"
   });
   // console.log('response', response)
   return await response.json();
