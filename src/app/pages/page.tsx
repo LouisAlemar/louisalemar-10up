@@ -2,9 +2,10 @@
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchPages, selectAllPages } from '@/features/pages';
+import { fetchPages, selectAll } from '@/features/pages';
 import { AppDispatch } from '@/redux/store';
 import DOMPurify from 'dompurify';
+import Link from 'next/link';
 
 const PagesList: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -15,7 +16,7 @@ const PagesList: React.FC = () => {
   }, [dispatch]);
 
   // Use the selector to get all pages from the state
-  const pages = useSelector(selectAllPages);
+  const pages = useSelector(selectAll);
   const pagesStatus = useSelector((state: any) => state.pages.status);
   const error = useSelector((state: any) => state.pages.error);
 
@@ -34,12 +35,14 @@ const PagesList: React.FC = () => {
       <h2>Pages</h2>
       <ul>
         {pages.map((page) => (
-          <li key={page.id}>
-            <h3>{page.title.rendered}</h3>
-            <p
-              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(page.content.rendered) }}
-            ></p>
-          </li>
+          <Link href={`/pages/${page.slug}`} key={page.id}>
+            <li>
+              <h3>{page.title.rendered}</h3>
+              <p
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(page.content.rendered) }}
+              ></p>
+            </li>
+          </Link>
         ))}
       </ul>
     </div>

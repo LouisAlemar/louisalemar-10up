@@ -127,10 +127,10 @@ export const selectPostBySlug = (postsArray: Post[], slug: string) => {
 // Export the auto-generated actions and the reducer
 export default postsSlice.reducer;
 
-const projectSelectors = postsAdapter.getSelectors(
+const postSelector = postsAdapter.getSelectors(
   (state: RootState) => state.posts
 );
 
 export const { selectIds, selectEntities, selectById, selectTotal, selectAll } =
-  projectSelectors;
+  postSelector;
 

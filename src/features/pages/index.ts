@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
+import { RootState } from "@/redux/store";
 
-type Page = {
+export interface Page {
   id: number;
   date: string;
   date_gmt: string;
@@ -77,9 +78,20 @@ const pagesSlice = createSlice({
 // Export the auto-generated actions and the reducer
 export default pagesSlice.reducer;
 
+export const selectPageBySlug = (pagesArray: Page[], slug: string) => {
+  return pagesArray.find((page: any) => page.slug === slug);
+}
+
 // Export the selector functions from the adapter, which allow us to query the state
-export const {
-  selectAll: selectAllPages,
-  selectById: selectPageById,
-  selectIds: selectPageIds,
-} = pagesAdapter.getSelectors((state: { pages: ReturnType<typeof pagesSlice.reducer> }) => state.pages);
+// export const {
+//   selectAll: selectAllPages,
+//   selectById: selectPageById,
+//   selectIds: selectPageIds,
+// } = pagesAdapter.getSelectors((state: { pages: ReturnType<typeof pagesSlice.reducer> }) => state.pages);
+
+const projectSelectors = pagesAdapter.getSelectors(
+  (state: RootState) => state.pages
+);
+
+export const { selectIds, selectEntities, selectById, selectTotal, selectAll } =
+  projectSelectors;
