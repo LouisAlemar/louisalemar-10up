@@ -31,7 +31,17 @@ const PostsList: React.FC = () => {
 
   return (
     <div>
-      <h2>Welcome To My Marvel Blog Site!</h2>
+      <h2>Posts</h2>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <h3>{post.title.rendered}</h3>
+            <p
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content.rendered) }}
+            ></p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
