@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation'
 import { useSelector, useDispatch } from "react-redux";
-import { selectPageBySlug, selectAll, fetchPages, fetchPagesStatus, fetchPagesError } from '@/features/pages'
+import { selectPageBySlug, selectAll, fetchPages, fetchPagesStatus, fetchPagesError, fetchPageBySlug } from '@/features/pages'
 import { AppDispatch, RootState } from "@/redux/store";
 import { useEffect } from 'react';
 import DOMPurify from 'dompurify';
@@ -25,8 +25,8 @@ const PageItem = () => {
   })
 
   useEffect(() => {
-    dispatch(fetchPages());
-  }, [dispatch]);
+    dispatch(fetchPageBySlug(slug as string));
+  }, [dispatch, slug]);
 
   if (pagesStatus === 'loading') {
     return <div>Loading...</div>;

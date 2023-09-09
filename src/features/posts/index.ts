@@ -11,11 +11,17 @@ const postsAdapter = createEntityAdapter<Post>({
 const initialState = postsAdapter.getInitialState({
   fetchPostsStatus: 'idle' as 'idle' | 'loading' | 'succeeded' | 'failed',
   fetchPostsError: null as string | null,
+  fetchPostBySlugStatus: 'idle' as 'idle' | 'loading' | 'succeeded' | 'failed',
+  fetchPostBySlugError: null as string | null,
 });
 
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
   const response = await fetch("/api/posts/");
-  // console.log('response', response)
+  return await response.json();
+});
+
+export const fetchPostBySlug = createAsyncThunk<any, string>('posts/fetchPostBySlug', async (postSlug: string) => {
+  const response = await fetch(`/api/posts/${postSlug}`);
   return await response.json();
 });
 
@@ -51,6 +57,18 @@ const postsSlice = createSlice({
       .addCase(fetchPosts.rejected, (state, action) => {
         state.fetchPostsStatus = 'failed';
         state.fetchPostsError = action.error.message ? action.error.message : null;
+      })
+      .addCase(fetchPostBySlug.pending, (state) => {
+        state.fetchPostBySlugStatus = 'loading';
+      })
+      .addCase(fetchPostBySlug.fulfilled, (state, action) => {
+        state.fetchPostBySlugStatus = 'succeeded';
+        // Use the adapter to set the posts in the state
+        postsAdapter.setAll(state, action.payload);
+      })
+      .addCase(fetchPostBySlug.rejected, (state, action) => {
+        state.fetchPostBySlugStatus = 'failed';
+        state.fetchPostBySlugError = action.error.message ? action.error.message : null;
       });
   },
 });

@@ -11,11 +11,17 @@ const pagesAdapter = createEntityAdapter<Page>({
 const initialState = pagesAdapter.getInitialState({
   fetchPagesStatus: 'idle' as 'idle' | 'loading' | 'succeeded' | 'failed',
   fetchPagesError: null as string | null,
+  fetchPageBySlugStatus: 'idle' as 'idle' | 'loading' | 'succeeded' | 'failed',
+  fetchPageBySlugError: null as string | null,
 });
 
 export const fetchPages = createAsyncThunk('pages/fetchPages', async () => {
   const response = await fetch("/api/pages/");
-  // console.log('response', response)
+  return await response.json();
+});
+
+export const fetchPageBySlug = createAsyncThunk<any, string>('pages/fetchPageBySlug', async (pageSlug: string) => {
+  const response = await fetch(`/api/pages/${pageSlug}`);
   return await response.json();
 });
 
@@ -48,6 +54,17 @@ const pagesSlice = createSlice({
       .addCase(fetchPages.rejected, (state, action) => {
         state.fetchPagesStatus = 'failed';
         state.fetchPagesError = action.error.message ? action.error.message : null;
+      })
+      .addCase(fetchPageBySlug.pending, (state) => {
+        state.fetchPageBySlugStatus = 'loading';
+      })
+      .addCase(fetchPageBySlug.fulfilled, (state, action) => {
+        state.fetchPageBySlugStatus = 'succeeded';
+        pagesAdapter.setAll(state, action.payload);
+      })
+      .addCase(fetchPageBySlug.rejected, (state, action) => {
+        state.fetchPageBySlugStatus = 'failed';
+        state.fetchPageBySlugError = action.error.message ? action.error.message : null;
       });
   },
 });

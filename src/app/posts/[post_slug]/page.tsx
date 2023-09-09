@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation'
 import { useSelector, useDispatch } from "react-redux";
-import { selectPostBySlug, selectAll, fetchPosts, fetchPostsStatus, fetchPostsError } from '@/features/posts'
+import { selectPostBySlug, selectAll, fetchPosts, fetchPostsStatus, fetchPostsError, fetchPostBySlug } from '@/features/posts'
 import { AppDispatch, RootState } from "@/redux/store";
 import { useEffect } from 'react';
 import DOMPurify from 'dompurify';
@@ -25,8 +25,8 @@ const PostItem = () => {
   })
 
   useEffect(() => {
-    dispatch(fetchPosts());
-  }, [dispatch]);
+    dispatch(fetchPostBySlug(slug as string));
+  }, [dispatch, slug]);
 
   if (postsStatus === 'loading') {
     return <div>Loading...</div>;
