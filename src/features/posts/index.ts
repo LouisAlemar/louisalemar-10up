@@ -1,91 +1,16 @@
-import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createEntityAdapter, createDraftSafeSelector } from '@reduxjs/toolkit';
 import { RootState } from "@/redux/store";
-
-// Define the Post type
-export interface Post {
-  id: number;
-  date: string;
-  date_gmt: string;
-  guid: {
-    rendered: string;
-  };
-  modified: string;
-  modified_gmt: string;
-  slug: string;
-  status: string;
-  type: string;
-  link: string;
-  title: {
-    rendered: string;
-  };
-  content: {
-    rendered: string;
-    protected: boolean;
-  };
-  excerpt: {
-    rendered: string;
-    protected: boolean;
-  };
-  author: number;
-  featured_media: number;
-  comment_status: string;
-  ping_status: string;
-  sticky: boolean;
-  template: string;
-  format: string;
-  meta: {
-    footnotes: string;
-  };
-  categories: number[];
-  tags: any[];
-  _links: {
-    self: Link[];
-    collection: Link[];
-    about: Link[];
-    author: LinkEmbeddable[];
-    replies: LinkEmbeddable[];
-    "version-history": VersionHistory[];
-    "wp:attachment": Link[];
-    "wp:term": WpTerm[];
-    curies: Curies[];
-  };
-}
-
-interface Link {
-  href: string;
-}
-
-interface LinkEmbeddable {
-  embeddable: boolean;
-  href: string;
-}
-
-interface VersionHistory {
-  count: number;
-  href: string;
-}
-
-interface WpTerm {
-  taxonomy: string;
-  embeddable: true;
-  href: string;
-}
-
-interface Curies {
-  name: string;
-  href: string;
-  templated: true;
-}
+import { Post } from './post.type'
 
 // Set up the entity adapter
 const postsAdapter = createEntityAdapter<Post>({
-  selectId: (post) => post.id,
+  selectId: (post) => post.slug,
 });
 
 // Define the initial state using the adapter's getInitialState method
 const initialState = postsAdapter.getInitialState({
-  status: 'idle' as 'idle' | 'loading' | 'succeeded' | 'failed',
-  error: null as string | null,
+  fetchPostsStatus: 'idle' as 'idle' | 'loading' | 'succeeded' | 'failed',
+  fetchPostsError: null as string | null,
 });
 
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
@@ -94,7 +19,17 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
   return await response.json();
 });
 
+const selectSelf = (state: RootState) => state
 
+export const fetchPostsStatus = createDraftSafeSelector(
+  selectSelf,
+  (state) => state.posts.fetchPostsStatus
+)
+
+export const fetchPostsError = createDraftSafeSelector(
+  selectSelf,
+  (state) => state.posts.fetchPostsError
+)
 
 // Define the slice
 const postsSlice = createSlice({
@@ -106,23 +41,20 @@ const postsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchPosts.pending, (state) => {
-        state.status = 'loading';
+        state.fetchPostsStatus = 'loading';
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.fetchPostsStatus = 'succeeded';
         // Use the adapter to set the posts in the state
         postsAdapter.setAll(state, action.payload);
       })
       .addCase(fetchPosts.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message ? action.error.message : null;
+        state.fetchPostsStatus = 'failed';
+        state.fetchPostsError = action.error.message ? action.error.message : null;
       });
   },
 });
 
-export const selectPostBySlug = (postsArray: Post[], slug: string) => {
-  return postsArray.find((post: any) => post.slug === slug);
-}
 
 // Export the auto-generated actions and the reducer
 export default postsSlice.reducer;
@@ -134,3 +66,4 @@ const postSelector = postsAdapter.getSelectors(
 export const { selectIds, selectEntities, selectById, selectTotal, selectAll } =
   postSelector;
 
+export const selectPostBySlug = selectById;
