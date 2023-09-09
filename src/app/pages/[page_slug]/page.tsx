@@ -2,8 +2,8 @@
 
 import { useParams } from 'next/navigation'
 import { useSelector, useDispatch } from "react-redux";
-import { Page, selectPageBySlug, selectAll, fetchPages } from '@/features/pages'
-import { AppDispatch } from "@/redux/store";
+import { selectPageBySlug, selectAll, fetchPages, fetchPagesStatus, fetchPagesError } from '@/features/pages'
+import { AppDispatch, RootState } from "@/redux/store";
 import { useEffect } from 'react';
 import DOMPurify from 'dompurify';
 
@@ -11,10 +11,18 @@ const PageItem = () => {
   const dispatch = useDispatch<AppDispatch>();
   const router = useParams()
   const slug = router.page_slug
-  const allPages: Page[] = useSelector(selectAll);
-  const page = selectPageBySlug(allPages, slug as string);
-  const pagesStatus = useSelector((state: any) => state.pages.status);
-  const error = useSelector((state: any) => state.pages.error);
+
+  const page = useSelector((state: RootState) =>
+    selectPageBySlug(state, slug as string)
+  );
+
+  const pagesStatus = useSelector((state: RootState) => {
+    return fetchPagesStatus(state)
+  })
+
+  const error = useSelector((state: RootState) => {
+    return fetchPagesError(state)
+  })
 
   useEffect(() => {
     dispatch(fetchPages());

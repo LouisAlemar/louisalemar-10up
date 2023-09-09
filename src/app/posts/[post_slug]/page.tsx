@@ -2,8 +2,8 @@
 
 import { useParams } from 'next/navigation'
 import { useSelector, useDispatch } from "react-redux";
-import { Post, selectPostBySlug, selectAll, fetchPosts } from '@/features/posts'
-import { AppDispatch } from "@/redux/store";
+import { selectPostBySlug, selectAll, fetchPosts, fetchPostsStatus, fetchPostsError } from '@/features/posts'
+import { AppDispatch, RootState } from "@/redux/store";
 import { useEffect } from 'react';
 import DOMPurify from 'dompurify';
 
@@ -11,10 +11,18 @@ const PostItem = () => {
   const dispatch = useDispatch<AppDispatch>();
   const router = useParams()
   const slug = router.post_slug
-  const allPosts: Post[] = useSelector(selectAll);
-  const post = selectPostBySlug(allPosts, slug as string);
-  const postsStatus = useSelector((state: any) => state.posts.status);
-  const error = useSelector((state: any) => state.posts.error);
+
+  const post = useSelector((state: RootState) =>
+    selectPostBySlug(state, slug as string)
+  );
+
+  const postsStatus = useSelector((state: RootState) => {
+    return fetchPostsStatus(state)
+  })
+
+  const error = useSelector((state: RootState) => {
+    return fetchPostsError(state)
+  })
 
   useEffect(() => {
     dispatch(fetchPosts());
