@@ -2,8 +2,8 @@
 
 import { Provider } from "react-redux";
 import store from "./store";
-import Nav from "@/components/nav/navigation";
-import Footer from "@/components/footer/footer";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 
 export function Providers({ children }: { children: React.ReactNode }) {
     return (
