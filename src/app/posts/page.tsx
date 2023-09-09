@@ -2,9 +2,10 @@
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchPosts, selectAllPosts } from '@/features/posts';
+import { fetchPosts, selectAll } from '@/features/posts';
 import { AppDispatch } from '@/redux/store';
 import DOMPurify from 'dompurify';
+import Link from 'next/link';
 
 const PostsList: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -15,7 +16,7 @@ const PostsList: React.FC = () => {
   }, [dispatch]);
 
   // Use the selector to get all posts from the state
-  const posts = useSelector(selectAllPosts);
+  const posts = useSelector(selectAll);
   const postsStatus = useSelector((state: any) => state.posts.status);
   const error = useSelector((state: any) => state.posts.error);
 
@@ -27,19 +28,19 @@ const PostsList: React.FC = () => {
     return <div>Error: {error}</div>;
   }
 
-  console.log(posts)
-
   return (
     <div>
       <h2>Posts</h2>
       <ul>
         {posts.map((post) => (
-          <li key={post.id}>
-            <h3>{post.title.rendered}</h3>
-            <p
-              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content.rendered) }}
-            ></p>
-          </li>
+          <Link href={`/posts/${post.slug}`} key={post.id}>
+            <li>
+              <h3>{post.title.rendered}</h3>
+              <p
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content.rendered) }}
+              ></p>
+            </li>
+          </Link>
         ))}
       </ul>
     </div>

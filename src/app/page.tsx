@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchPosts, selectAllPosts } from '@/features/posts';
+import { fetchPosts, selectAll } from '@/features/posts';
 import { AppDispatch } from '@/redux/store';
 import DOMPurify from 'dompurify';
 
@@ -15,7 +15,7 @@ const PostsList: React.FC = () => {
   }, [dispatch]);
 
   // Use the selector to get all posts from the state
-  const posts = useSelector(selectAllPosts);
+  const posts = useSelector(selectAll);
   const postsStatus = useSelector((state: any) => state.posts.status);
   const error = useSelector((state: any) => state.posts.error);
 
@@ -26,8 +26,6 @@ const PostsList: React.FC = () => {
   if (postsStatus === 'failed') {
     return <div>Error: {error}</div>;
   }
-
-  console.log(posts)
 
   return (
     <div>
