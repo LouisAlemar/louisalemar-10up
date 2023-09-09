@@ -1,7 +1,5 @@
-import { createAsyncThunk, createSlice, createEntityAdapter, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
 
-// Define a type for a single page
 type Page = {
   id: number;
   date: string;
@@ -37,28 +35,25 @@ type Page = {
 };
 
 
-// Entity Adapter
-const pagesAdapter = createEntityAdapter<Page>();
-
-// Initial state type
-type PagesState = ReturnType<typeof pagesAdapter.getInitialState> & {
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
-  error: string | null;
-};
-
-// Initial state
-const initialState: PagesState = pagesAdapter.getInitialState({
-  status: 'idle',
-  error: null
+// Set up the entity adapter
+const pagesAdapter = createEntityAdapter<Page>({
+  selectId: (page) => page.id,
 });
 
-// Thunks
+// Define the initial state using the adapter's getInitialState method
+const initialState = pagesAdapter.getInitialState({
+  status: 'idle' as 'idle' | 'loading' | 'succeeded' | 'failed',
+  error: null as string | null,
+});
+
 export const fetchPages = createAsyncThunk('pages/fetchPages', async () => {
-  const response = await axios.get<Page[]>('http://wp.skyloproductions.com/wp-json/wp/v2/pages');
-  return response.data;
+  const response = await fetch("/api/pages/");
+  // console.log('response', response)
+  return await response.json();
 });
 
-// Slice
+
+// Define the slice
 const pagesSlice = createSlice({
   name: 'pages',
   initialState,
@@ -70,7 +65,6 @@ const pagesSlice = createSlice({
       })
       .addCase(fetchPages.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        // Use the adapter to set the posts in the state
         pagesAdapter.setAll(state, action.payload);
       })
       .addCase(fetchPages.rejected, (state, action) => {
@@ -80,12 +74,12 @@ const pagesSlice = createSlice({
   },
 });
 
-// Selectors
+// Export the auto-generated actions and the reducer
+export default pagesSlice.reducer;
+
+// Export the selector functions from the adapter, which allow us to query the state
 export const {
   selectAll: selectAllPages,
   selectById: selectPageById,
-  selectIds: selectPageIds
-} = pagesAdapter.getSelectors((state: { pages: PagesState }) => state.pages);
-
-// Reducer
-export default pagesSlice.reducer;
+  selectIds: selectPageIds,
+} = pagesAdapter.getSelectors((state: { pages: ReturnType<typeof pagesSlice.reducer> }) => state.pages);
