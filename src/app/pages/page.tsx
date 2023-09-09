@@ -31,7 +31,7 @@ const PagesList: React.FC = () => {
   console.log(pages)
 
   return (
-    <div>
+    <main>
       <h2>Pages</h2>
       <ul>
         {pages.map((page) => (
@@ -45,7 +45,7 @@ const PagesList: React.FC = () => {
           </Link>
         ))}
       </ul>
-    </div>
+    </main>
   );
 };
 

@@ -40,12 +40,12 @@ const PostItem = () => {
   if (!post) return <div>Post not found</div>;
 
   return (
-    <div>
+    <main>
       <h2>{post.title.rendered}</h2>
       <p
         dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content.rendered) }}
       ></p>
-    </div>
+    </main>
   );
 }
 
