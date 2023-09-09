@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { RootState } from "@/redux/store";
 
 // Define the Post type
 export interface Post {
@@ -95,11 +95,14 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
 });
 
 
+
 // Define the slice
 const postsSlice = createSlice({
   name: 'posts',
   initialState,
-  reducers: {},
+  reducers: {
+    setAllPosts: postsAdapter.setAll,
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPosts.pending, (state) => {
@@ -117,12 +120,17 @@ const postsSlice = createSlice({
   },
 });
 
+export const selectPostBySlug = (postsArray: Post[], slug: string) => {
+  return postsArray.find((post: any) => post.slug === slug);
+}
+
 // Export the auto-generated actions and the reducer
 export default postsSlice.reducer;
 
-// Export the selector functions from the adapter, which allow us to query the state
-export const {
-  selectAll: selectAllPosts,
-  selectById: selectPostById,
-  selectIds: selectPostIds,
-} = postsAdapter.getSelectors((state: { posts: ReturnType<typeof postsSlice.reducer> }) => state.posts);
+const projectSelectors = postsAdapter.getSelectors(
+  (state: RootState) => state.posts
+);
+
+export const { selectIds, selectEntities, selectById, selectTotal, selectAll } =
+  projectSelectors;
+
