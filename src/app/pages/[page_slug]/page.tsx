@@ -40,12 +40,12 @@ const PageItem = () => {
   if (!page) return <div>Page not found</div>;
 
   return (
-    <div>
+    <main>
       <h2>{page.title.rendered}</h2>
       <p
         dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(page.content.rendered) }}
       ></p>
-    </div>
+    </main>
   );
 }
 

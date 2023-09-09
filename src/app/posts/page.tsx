@@ -29,7 +29,7 @@ const PostsList: React.FC = () => {
   }
 
   return (
-    <div>
+    <main>
       <h2>Posts</h2>
       <ul>
         {posts.map((post) => (
@@ -43,7 +43,7 @@ const PostsList: React.FC = () => {
           </Link>
         ))}
       </ul>
-    </div>
+    </main>
   );
 };
 

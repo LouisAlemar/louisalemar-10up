@@ -28,9 +28,9 @@ const PostsList: React.FC = () => {
   }
 
   return (
-    <div>
+    <main>
       <h2>Welcome To My Marvel Blog Site!</h2>
-    </div>
+    </main>
   );
 };
 
