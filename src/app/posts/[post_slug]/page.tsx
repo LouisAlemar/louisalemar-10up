@@ -10,7 +10,7 @@ import DOMPurify from 'dompurify';
 const PostItem = () => {
   const dispatch = useDispatch<AppDispatch>();
   const router = useParams()
-  const slug = router.slug
+  const slug = router.post_slug
   const allPosts: Post[] = useSelector(selectAll);
   const post = selectPostBySlug(allPosts, slug as string);
   const postsStatus = useSelector((state: any) => state.posts.status);
