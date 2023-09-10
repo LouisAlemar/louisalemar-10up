@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchPosts, selectAll } from '@/features/posts';
+import { fetchPosts, selectAllPosts } from '@/features/posts';
 import { AppDispatch } from '@/redux/store';
 import { Bangers } from 'next/font/google'
 
@@ -17,7 +17,7 @@ const PostsList: React.FC = () => {
   }, [dispatch]);
 
   // Use the selector to get all posts from the state
-  const posts = useSelector(selectAll);
+  const posts = useSelector(selectAllPosts);
   const postsStatus = useSelector((state: any) => state.posts.status);
   const error = useSelector((state: any) => state.posts.error);
 
