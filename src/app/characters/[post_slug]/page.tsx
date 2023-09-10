@@ -1,6 +1,7 @@
 "use client"
 
 import { useParams } from 'next/navigation'
+import { motion } from 'framer-motion'
 import { useSelector, useDispatch } from "react-redux";
 import { selectPostBySlug, fetchPostsStatus, fetchPostsError, fetchPostBySlug } from '@/features/posts'
 import { fetchMediaById, selectMediaById } from '@/features/media';
@@ -48,12 +49,21 @@ const CharacterItemPage = () => {
 
   if (!post) return <div>Post not found</div>;
 
-  const imageThumbnail: string | undefined = image?.media_details.sizes.medium.source_url
-
   return (
-    <main>
-      <CharacterItem post={post} imageThumbnail={imageThumbnail} />
-    </main>
+    <motion.div
+      className="text-center"
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 1,
+        delay: 0.5,
+        ease: [0, 0.71, 0.2, 1.01]
+      }}
+    >
+      <main>
+        <CharacterItem post={post} image={image} />
+      </main>
+    </motion.div>
   );
 }
 
