@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect } from 'react';
-import { motion } from "framer-motion";
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPages, selectAll } from '@/features/pages';
 import { AppDispatch } from '@/redux/store';
@@ -33,32 +32,21 @@ const PagesList: React.FC = () => {
   }
 
   return (
-    <motion.div
-      className="text-center"
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        duration: 1,
-        delay: 0.5,
-        ease: [0, 0.71, 0.2, 1.01]
-      }}
-    >
-      <main>
-        <h2 className={bangers.className}>Pages</h2>
-        <ul>
-          {pages.map((page) => (
-            <Link href={`/pages/${page.slug}`} key={page.id}>
-              <li>
-                <h3>{page.title.rendered}</h3>
-                <p
-                  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(page.content.rendered) }}
-                ></p>
-              </li>
-            </Link>
-          ))}
-        </ul>
-      </main>
-    </motion.div>
+    <main>
+      <h2 className={bangers.className}>Pages</h2>
+      <ul>
+        {pages.map((page) => (
+          <Link href={`/pages/${page.slug}`} key={page.id}>
+            <li>
+              <h3>{page.title.rendered}</h3>
+              <p
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(page.content.rendered) }}
+              ></p>
+            </li>
+          </Link>
+        ))}
+      </ul>
+    </main>
   );
 };
 

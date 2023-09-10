@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect } from 'react';
-import { motion } from 'framer-motion'
 import { useSelector, useDispatch } from 'react-redux';
 import { Bangers } from 'next/font/google'
 
@@ -36,29 +35,17 @@ const CharactersListPage: React.FC = () => {
   }
 
   return (
-    <motion.div
-      className="text-center"
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        duration: 1,
-        delay: 0.5,
-        ease: [0, 0.71, 0.2, 1.01]
-      }}
-    >
-      <main>
-        <h2 className={bangers.className}>Posts</h2>
+    <main>
+      <h2 className={bangers.className}>Posts</h2>
+      <div className="post-item-container">
+        {posts.map((post) => {
+          const mediaObj = media.find((obj) => obj.id === post.featured_media)
+          const imageThumbnail: string | undefined = mediaObj?.media_details.sizes.thumbnail.source_url
 
-        <div className="post-item-container">
-          {posts.map((post) => {
-            const mediaObj = media.find((obj) => obj.id === post.featured_media)
-            const imageThumbnail: string | undefined = mediaObj?.media_details.sizes.thumbnail.source_url
-
-            return <CharacterListingItem key={post.id} post={post} imageThumbnail={imageThumbnail} />
-          })}
-        </div>
-      </main>
-    </motion.div>
+          return <CharacterListingItem key={post.id} post={post} imageThumbnail={imageThumbnail} />
+        })}
+      </div>
+    </main>
   );
 };
 
