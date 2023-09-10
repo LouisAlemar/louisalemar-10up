@@ -9,7 +9,7 @@ const comicNeue = Comic_Neue({ subsets: ['latin'], weight: ["400", "700"] })
 
 export default function CharacterListingItem({ post, imageThumbnail }: { post: Post, imageThumbnail: string | undefined }) {
   return (
-    <div className='character-item' key={post.id}>
+    <article className='character-item' key={post.id}>
       <Link href={`/characters/${post.slug}`} >
         <div className='image-container'>
           <Image src={imageThumbnail as string} width={150} height={150} alt='' />
@@ -21,6 +21,6 @@ export default function CharacterListingItem({ post, imageThumbnail }: { post: P
           ></p>
         </div>
       </Link>
-    </div>
+    </article>
   );
 }
