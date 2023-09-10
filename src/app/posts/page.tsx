@@ -6,6 +6,9 @@ import { fetchPosts, selectAll } from '@/features/posts';
 import { AppDispatch } from '@/redux/store';
 import DOMPurify from 'dompurify';
 import Link from 'next/link';
+import { Bangers } from 'next/font/google'
+
+const bangers = Bangers({ subsets: ['latin'], weight: ["400"] })
 
 const PostsList: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -28,9 +31,11 @@ const PostsList: React.FC = () => {
     return <div>Error: {error}</div>;
   }
 
+  console.log(posts)
+
   return (
     <main>
-      <h2>Posts</h2>
+      <h2 className={bangers.className}>Posts</h2>
       <ul>
         {posts.map((post) => (
           <Link href={`/posts/${post.slug}`} key={post.id}>

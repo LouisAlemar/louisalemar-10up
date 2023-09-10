@@ -2,13 +2,13 @@
 
 import { Provider } from "react-redux";
 import store from "./store";
-import Nav from "@/components/Nav";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export function Providers({ children }: { children: React.ReactNode }) {
     return (
         <Provider store={store}>
-            <Nav />
+            <Header />
             {children}
             <Footer />
         </Provider>

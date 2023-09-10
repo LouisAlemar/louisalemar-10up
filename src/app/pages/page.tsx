@@ -6,6 +6,9 @@ import { fetchPages, selectAll } from '@/features/pages';
 import { AppDispatch } from '@/redux/store';
 import DOMPurify from 'dompurify';
 import Link from 'next/link';
+import { Bangers } from 'next/font/google'
+
+const bangers = Bangers({ subsets: ['latin'], weight: ["400"] })
 
 const PagesList: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -30,7 +33,7 @@ const PagesList: React.FC = () => {
 
   return (
     <main>
-      <h2>Pages</h2>
+      <h2 className={bangers.className}>Pages</h2>
       <ul>
         {pages.map((page) => (
           <Link href={`/pages/${page.slug}`} key={page.id}>
