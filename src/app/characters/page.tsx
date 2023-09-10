@@ -7,11 +7,11 @@ import { Bangers } from 'next/font/google'
 import { fetchPosts, fetchImageById, selectAllPosts } from '@/features/posts';
 import { AppDispatch } from '@/redux/store';
 import { fetchMedia, selectAllMedia } from '@/features/media';
-import PostItem from '@/components/PostItem';
+import CharacterListingItem from '@/components/CharacterListingItem';
 
 const bangers = Bangers({ subsets: ['latin'], weight: ["400"] })
 
-const PostsList: React.FC = () => {
+const CharactersListPage: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
 
   // Fetch posts from the API when the component mounts
@@ -43,11 +43,11 @@ const PostsList: React.FC = () => {
           const mediaObj = media.find((obj) => obj.id === post.featured_media)
           const imageThumbnail: string | undefined = mediaObj?.media_details.sizes.thumbnail.source_url
 
-          return <PostItem key={post.id} post={post} imageThumbnail={imageThumbnail} />
+          return <CharacterListingItem key={post.id} post={post} imageThumbnail={imageThumbnail} />
         })}
       </div>
     </main>
   );
 };
 
-export default PostsList;
+export default CharactersListPage;
