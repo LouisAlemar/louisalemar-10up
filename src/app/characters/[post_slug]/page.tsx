@@ -3,12 +3,13 @@
 import { useParams } from 'next/navigation'
 import { useSelector, useDispatch } from "react-redux";
 import { selectPostBySlug, fetchPostsStatus, fetchPostsError, fetchPostBySlug } from '@/features/posts'
+import { fetchMediaById, selectMediaById } from '@/features/media';
 import { AppDispatch, RootState } from "@/redux/store";
 import { useEffect } from 'react';
-import DOMPurify from 'dompurify';
-import Image from 'next/image';
 
-const PostItem = () => {
+import CharacterItem from '@/components/CharacterItem';
+
+const CharacterItemPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const router = useParams()
   const slug = router.post_slug
@@ -16,6 +17,13 @@ const PostItem = () => {
   const post = useSelector((state: RootState) =>
     selectPostBySlug(state, slug as string)
   );
+
+  const postImageId = post?.featured_media
+
+  const image = useSelector((state: RootState) =>
+    selectMediaById(state, postImageId as any)
+  );
+
 
   const postsStatus = useSelector((state: RootState) => {
     return fetchPostsStatus(state)
@@ -27,7 +35,8 @@ const PostItem = () => {
 
   useEffect(() => {
     dispatch(fetchPostBySlug(slug as string));
-  }, [dispatch, slug]);
+    dispatch(fetchMediaById(postImageId));
+  }, [dispatch, slug, postImageId]);
 
   if (postsStatus === 'loading') {
     return <div>Loading...</div>;
@@ -37,18 +46,15 @@ const PostItem = () => {
     return <div>Error: {error}</div>;
   }
 
-
   if (!post) return <div>Post not found</div>;
 
-  console.log(post)
+  const imageThumbnail: string | undefined = image?.media_details.sizes.medium.source_url
+
   return (
     <main>
-      <h2>{post.title.rendered}</h2>
-      <p
-        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content.rendered) }}
-      ></p>
+      <CharacterItem post={post} imageThumbnail={imageThumbnail} />
     </main>
   );
 }
 
-export default PostItem;
+export default CharacterItemPage;

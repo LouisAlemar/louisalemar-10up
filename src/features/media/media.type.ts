@@ -29,7 +29,7 @@ export interface Media {
         width: number;
         height: number;
       };
-      medium?: {
+      medium: {
         source_url: string;
         width: number;
         height: number;

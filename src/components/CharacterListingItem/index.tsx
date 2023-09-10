@@ -7,10 +7,10 @@ import { Post } from "@/features/posts/post.type";
 
 const comicNeue = Comic_Neue({ subsets: ['latin'], weight: ["400", "700"] })
 
-export default function PostItem({ post, imageThumbnail }: { post: Post, imageThumbnail: string | undefined }) {
+export default function CharacterListingItem({ post, imageThumbnail }: { post: Post, imageThumbnail: string | undefined }) {
   return (
-    <div className='post-item' key={post.id}>
-      <Link href={`/posts/${post.slug}`} >
+    <div className='character-item' key={post.id}>
+      <Link href={`/characters/${post.slug}`} >
         <div className='image-container'>
           <Image src={imageThumbnail as string} width={150} height={150} alt='' />
         </div>

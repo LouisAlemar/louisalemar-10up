@@ -11,11 +11,20 @@ const mediaAdapter = createEntityAdapter<Media>({
 const initialState = mediaAdapter.getInitialState({
   fetchMediaStatus: 'idle' as 'idle' | 'loading' | 'succeeded' | 'failed',
   fetchMediaError: null as string | null,
+  fetchMediaByIdStatus: 'idle' as 'idle' | 'loading' | 'succeeded' | 'failed',
+  fetchMediaByIdError: null as string | null,
 });
 
 export const fetchMedia = createAsyncThunk('media/fetchMedia', async () => {
   const response = await fetch("/api/media/");
   return await response.json();
+});
+
+export const fetchMediaById = createAsyncThunk<any, any>('media/fetchMediaById', async (postId: any) => {
+  const mediaResponse = await fetch(`/api/media/${postId}`);
+  const mediaData = await mediaResponse.json();
+
+  return mediaData;
 });
 
 const selectSelf = (state: RootState) => state
@@ -30,11 +39,23 @@ export const fetchMediaError = createDraftSafeSelector(
   (state) => state.media.fetchMediaError
 )
 
+export const fetchMediaByIdStatus = createDraftSafeSelector(
+  selectSelf,
+  (state) => state.media.fetchMediaByIdStatus
+)
+
+export const fetchMediaByIdError = createDraftSafeSelector(
+  selectSelf,
+  (state) => state.media.fetchMediaByIdError
+)
+
 // Define the slice
 const mediaSlice = createSlice({
   name: 'media',
   initialState,
-  reducers: {},
+  reducers: {
+    setAllMedia: mediaAdapter.setAll,
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchMedia.pending, (state) => {
@@ -48,6 +69,18 @@ const mediaSlice = createSlice({
         state.fetchMediaStatus = 'failed';
         state.fetchMediaError = action.error.message ? action.error.message : null;
       })
+      .addCase(fetchMediaById.pending, (state) => {
+        state.fetchMediaByIdStatus = 'loading';
+      })
+      .addCase(fetchMediaById.fulfilled, (state, action) => {
+        state.fetchMediaByIdStatus = 'succeeded';
+        // mediaAdapter.setAll(state, action.payload);
+        state.entities[action.payload.id] = action.payload
+      })
+      .addCase(fetchMediaById.rejected, (state, action) => {
+        state.fetchMediaByIdStatus = 'failed';
+        state.fetchMediaByIdError = action.error.message ? action.error.message : null;
+      })
   },
 });
 
@@ -60,4 +93,5 @@ const mediaSelectors = mediaAdapter.getSelectors(
 
 export const { selectIds, selectEntities, selectById, selectTotal, selectAll: selectAllMedia } =
   mediaSelectors;
-// export const selectPageBySlug = selectById;
+
+export const selectMediaById = selectById;

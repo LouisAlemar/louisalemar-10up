@@ -2,8 +2,6 @@ import { createSlice, createAsyncThunk, createEntityAdapter, createDraftSafeSele
 import { RootState } from "@/redux/store";
 import { Post } from './post.type'
 
-
-
 // Set up the entity adapter
 const postsAdapter = createEntityAdapter<Post>({
   selectId: (post) => post.slug,
@@ -28,15 +26,7 @@ export const fetchPostBySlug = createAsyncThunk<any, string>('posts/fetchPostByS
   const postResponse = await fetch(`/api/posts/${postSlug}`);
   const postData = await postResponse.json();
 
-  // const imageId = postData[0].featured_media;
-  // const imageResponse = await fetch(`http://wp.skyloproductions.com/wp-json/wp/v2/media/${imageId}`);
-  // const imageData = await imageResponse.json();
-
   return postData;
-  // return {
-  //   ...postData,
-  //   ...imageData
-  // }
 });
 
 export const fetchImageById = createAsyncThunk<any, string>('posts/fetchImageById', async (imageId: string) => {
@@ -90,18 +80,6 @@ const postsSlice = createSlice({
         state.fetchPostBySlugStatus = 'failed';
         state.fetchPostBySlugError = action.error.message ? action.error.message : null;
       })
-      // Fetch Image By ID
-      .addCase(fetchImageById.pending, (state) => {
-        state.fetchImageByIdStatus = 'loading';
-      })
-      .addCase(fetchImageById.fulfilled, (state, action) => {
-        state.fetchImageByIdStatus = 'succeeded';
-        postsAdapter.setAll(state, action.payload);
-      })
-      .addCase(fetchImageById.rejected, (state, action) => {
-        state.fetchImageByIdStatus = 'failed';
-        state.fetchImageByIdError = action.error.message ? action.error.message : null;
-      });
   },
 });
 
