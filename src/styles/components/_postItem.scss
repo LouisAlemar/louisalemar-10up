@@ -1,0 +1,10 @@
+.post-item {
+  margin-bottom: 20px;
+  .image-container {
+    display: flex;
+    justify-content: center;
+    img {
+      border-radius: 100px;
+    }
+  }
+}

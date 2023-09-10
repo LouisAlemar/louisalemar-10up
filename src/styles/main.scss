@@ -6,9 +6,11 @@
 // Component-Specific
 @import "./components/nav";
 @import "./components/footer";
+@import "./components/postItem";
 
 
 // Page-Specific
 @import "./pages/home";
+@import "./pages/postsListing";
 
 
