@@ -17,7 +17,7 @@ export default function PostItem({ post, imageThumbnail }: { post: Post, imageTh
         <div className='content-container'>
           <h3 className={comicNeue.className}>{post.title.rendered}</h3>
           <p
-            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content.rendered) }}
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.excerpt.rendered) }}
           ></p>
         </div>
       </Link>
