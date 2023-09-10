@@ -27,6 +27,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
-    "@types/dompurify": "^3.0.2"
+    "@types/dompurify": "^3.0.2",
+    "sass": "^1.66.1"
   }
 }
