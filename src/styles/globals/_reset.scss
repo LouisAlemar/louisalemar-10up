@@ -1,0 +1,29 @@
+/* Reset or Normalize Default Styles */
+
+/* Reset margin and padding on all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Normalize typography */
+html {
+  font-size: 16px; /* Set a base font size for easier responsiveness */
+}
+
+body {
+  line-height: 1.5;
+}
+
+/* Remove underlines from links */
+a {
+  text-decoration: none;
+}
+
+/* Remove list styles (bullets or numbers) */
+ul, ol {
+  list-style: none;
+}
+
+/* Additional reset or normalization styles can be added as needed */

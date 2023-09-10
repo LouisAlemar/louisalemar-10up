@@ -1,0 +1,14 @@
+// Global
+@import "./globals/reset";
+@import "./globals/variables";
+@import "./globals/global";
+
+// Component-Specific
+@import "./components/nav";
+@import "./components/footer";
+
+
+// Page-Specific
+@import "./pages/home";
+
+

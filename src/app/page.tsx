@@ -4,7 +4,9 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPosts, selectAll } from '@/features/posts';
 import { AppDispatch } from '@/redux/store';
-import DOMPurify from 'dompurify';
+import { Bangers } from 'next/font/google'
+
+const bangers = Bangers({ subsets: ['latin'], weight: ["400"] })
 
 const PostsList: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -29,7 +31,9 @@ const PostsList: React.FC = () => {
 
   return (
     <main>
-      <h2>Welcome To My Marvel Blog Site!</h2>
+      <section>
+        <h1 className={bangers.className}>Welcome To My Marvel Blog Site!</h1>
+      </section>
     </main>
   );
 };

@@ -28,8 +28,6 @@ const PagesList: React.FC = () => {
     return <div>Error: {error}</div>;
   }
 
-  console.log(pages)
-
   return (
     <main>
       <h2>Pages</h2>
