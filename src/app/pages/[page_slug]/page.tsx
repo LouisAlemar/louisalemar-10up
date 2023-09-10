@@ -1,7 +1,6 @@
 "use client"
 
 import { useParams } from 'next/navigation'
-import { motion } from 'framer-motion'
 import { useSelector, useDispatch } from "react-redux";
 import { selectPageBySlug, selectAll, fetchPages, fetchPagesStatus, fetchPagesError, fetchPageBySlug } from '@/features/pages'
 import { AppDispatch, RootState } from "@/redux/store";
@@ -41,23 +40,12 @@ const PageItem = () => {
   if (!page) return <div>Page not found</div>;
 
   return (
-    <motion.div
-      className="text-center"
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        duration: 1,
-        delay: 0.5,
-        ease: [0, 0.71, 0.2, 1.01]
-      }}
-    >
-      <main>
-        <h2>{page.title.rendered}</h2>
-        <p
-          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(page.content.rendered) }}
-        ></p>
-      </main>
-    </motion.div>
+    <main>
+      <h2>{page.title.rendered}</h2>
+      <p
+        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(page.content.rendered) }}
+      ></p>
+    </main>
   );
 }
 

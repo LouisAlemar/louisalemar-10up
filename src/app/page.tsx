@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect } from 'react';
-import { motion } from "framer-motion";
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPosts, selectAllPosts } from '@/features/posts';
 import { AppDispatch } from '@/redux/store';
@@ -31,22 +30,11 @@ const PostsList: React.FC = () => {
   }
 
   return (
-    <motion.div
-      className="text-center"
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        duration: 1,
-        delay: 0.5,
-        ease: [0, 0.71, 0.2, 1.01]
-      }}
-    >
-      <main>
-        <section>
-          <h1 className={bangers.className}>Welcome To My Marvel Blog Site!</h1>
-        </section>
-      </main>
-    </motion.div>
+    <main>
+      <section>
+        <h1 className={bangers.className}>Welcome To My Marvel Blog Site!</h1>
+      </section>
+    </main>
   );
 };
 
