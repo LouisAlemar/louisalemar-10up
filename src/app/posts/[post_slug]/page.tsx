@@ -2,10 +2,11 @@
 
 import { useParams } from 'next/navigation'
 import { useSelector, useDispatch } from "react-redux";
-import { selectPostBySlug, selectAll, fetchPosts, fetchPostsStatus, fetchPostsError, fetchPostBySlug } from '@/features/posts'
+import { selectPostBySlug, fetchPostsStatus, fetchPostsError, fetchPostBySlug } from '@/features/posts'
 import { AppDispatch, RootState } from "@/redux/store";
 import { useEffect } from 'react';
 import DOMPurify from 'dompurify';
+import Image from 'next/image';
 
 const PostItem = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -39,6 +40,7 @@ const PostItem = () => {
 
   if (!post) return <div>Post not found</div>;
 
+  console.log(post)
   return (
     <main>
       <h2>{post.title.rendered}</h2>
