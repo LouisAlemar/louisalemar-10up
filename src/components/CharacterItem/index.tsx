@@ -15,7 +15,7 @@ export default function CharacterItem({ post, image }: { post: Post, image: Medi
       <div className="image-container">
         <div className='background-image' style={{ backgroundImage: `url(${imageThumbnail})`, }}></div>
         {imageThumbnail ? (
-          <Image src={imageThumbnail} width={264} height={300} alt={image.alt_text} />
+          <Image src={imageThumbnail} width={264} height={300} alt={image.alt_text} priority />
         ) : (
           <p>No Image Found!</p>
         )}

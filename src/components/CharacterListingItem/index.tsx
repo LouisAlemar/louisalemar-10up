@@ -22,9 +22,10 @@ export default function CharacterListingItem({ index, post, image }: { index: nu
         </div>
         <div className='content-container'>
           <h3 className={comicNeue.className}>{post.title.rendered}</h3>
-          <p
+          <div
+            className="character-excerpt"
             dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.excerpt.rendered) }}
-          ></p>
+          ></div>
         </div>
       </Link>
     </article>

@@ -37,16 +37,12 @@ h6 {
 p, ul, ol {
   color: $white;
   font-size: 15px;
-  text-align: center;
   margin-bottom: 20px;
   line-height: 25px;
 }
 
 ul, ol {
-  @media (min-width: $breakpoint-sm) {
-    text-align: left;
-    margin-left: 30px;
-  }
+  margin-left: 30px;
 }
 
 strong {
