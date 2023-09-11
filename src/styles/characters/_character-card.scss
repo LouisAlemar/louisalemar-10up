@@ -1,4 +1,4 @@
-.character-item {
+.character-card {
   flex: 0 0 100%;
   padding: 20px;
   margin-bottom: 20px;
@@ -12,7 +12,37 @@
   @media (min-width: $breakpoint-lg) {
     flex: 0 0 calc(25% - 20px);
   }
-  .background-image {
+  &--item-0 {
+    animation: fadeIn 1s .2s forwards;
+  }
+  &--item-1 {
+    animation: fadeIn 1s .6s forwards;
+  }
+  &--item-2 {
+    animation: fadeIn 1s 1s forwards;
+  }
+  &--item-3 {
+    animation: fadeIn 1s 1.4s forwards;
+  }
+  &--item-4 {
+    animation: fadeIn 1s 1.8s forwards;
+  }
+  &--item-5 {
+    animation: fadeIn 1s 2.2s forwards;
+  }
+  &--item-6 {
+    animation: fadeIn 1s 2.6s forwards;
+  }
+  &--item-7 {
+    animation: fadeIn 1s 3s forwards;
+  }
+  &--item-8 {
+    animation: fadeIn 1s 3.4s forwards;
+  }
+  &--item-9 {
+    animation: fadeIn 1s 3.8s forwards;
+  }
+  &__background-image {
     border-radius: 10px;
     background-repeat: no-repeat;
     background-position: center center;
@@ -25,53 +55,27 @@
     z-index: 1;
     opacity: 0.3;
   }
-
-  &.item-0 {
-    animation: fadeIn 1s .2s forwards;
-  }
-  &.item-1 {
-    animation: fadeIn 1s .6s forwards;
-  }
-  &.item-2 {
-    animation: fadeIn 1s 1s forwards;
-  }
-  &.item-3 {
-    animation: fadeIn 1s 1.4s forwards;
-  }
-  &.item-4 {
-    animation: fadeIn 1s 1.8s forwards;
-  }
-  &.item-5 {
-    animation: fadeIn 1s 2.2s forwards;
-  }
-  &.item-6 {
-    animation: fadeIn 1s 2.6s forwards;
-  }
-  &.item-7 {
-    animation: fadeIn 1s 3s forwards;
-  }
-  &.item-8 {
-    animation: fadeIn 1s 3.4s forwards;
-  }
-  &.item-9 {
-    animation: fadeIn 1s 3.8s forwards;
-  }
-
-  .image-container {
+  &__image-container {
     display: flex;
     justify-content: center;
     z-index: 10;
     position: relative;
-    img {
-      border-radius: 100px;
-      border: 5px solid $white;
-    }
   }
-  .content-container {
+  &__image {
+    border-radius: 100px;
+    border: 5px solid $white;
+  }
+  &__content-container {
     z-index: 10;
     position: relative;
-    .character-excerpt {
-      text-align: center;
-    }
   }
+  &__content-excerpt {
+    text-align: center;
+  }
+}
+
+.characters-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
 }

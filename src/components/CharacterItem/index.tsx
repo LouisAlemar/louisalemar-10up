@@ -11,30 +11,30 @@ export default function CharacterItem({ post, image }: { post: Post, image: Medi
   const imageThumbnail = image?.media_details.sizes.medium.source_url
 
   return (
-    <article className='character-item-post fade-in' key={post.id}>
-      <div className="image-container">
-        <div className='background-image' style={{ backgroundImage: `url(${imageThumbnail})`, }}></div>
+    <article className='character-item fade-in' key={post.id}>
+      <div className="character-item__image-container">
+        <div className='character-item__background-image' style={{ backgroundImage: `url(${imageThumbnail})`, }}></div>
         {imageThumbnail ? (
-          <Image src={imageThumbnail} width={264} height={300} alt={image.alt_text} priority />
+          <Image className='character-item__image' src={imageThumbnail} width={264} height={300} alt={image.alt_text} priority />
         ) : (
           <p>No Image Found!</p>
         )}
       </div>
-      <div className="content-container">
-        <h2 className={comicNeue.className}>{post.title.rendered}</h2>
+      <div className="character-item__content-container">
+        <h2 className={`${comicNeue.className} character-item__title`}>{post.title.rendered}</h2>
 
-        <div className="character-content">
-          <aside className="character-details">
-            {post.acf.real_name ? (
+        <div className="character-item__character-content">
+          <aside className="character-item__character-details">
+            {post.acf.real_name && (
               <h5><strong>Real Name:</strong> <br /><span>{post.acf.real_name}</span></h5>
-            ) : (<></>)}
+            )}
 
-            {post.acf.alias ? (
+            {post.acf.alias && (
               <h5><strong>Alias:</strong> <br /><span>{post.acf.alias}</span></h5>
-            ) : (<></>)}
+            )}
           </aside>
           <div
-            className="character-bio"
+            className="character-item__character-bio"
             dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content.rendered) }}
           ></div>
         </div>

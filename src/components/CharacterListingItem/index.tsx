@@ -12,18 +12,18 @@ export default function CharacterListingItem({ index, post, image }: { index: nu
   const imageThumbnail = image?.media_details.sizes.medium.source_url
 
   return (
-    <article className={`character-item fade-in item-${index}`} key={post.id}>
+    <article className={`character-card fade-in character-card--item-${index}`} key={post.id}>
       <Link href={`/characters/${post.slug}`} >
-        <div className='background-image' style={{ backgroundImage: `url(${imageThumbnail})`, }}></div>
-        <div className='image-container'>
-          {imageThumbnail ? (
-            <Image src={imageThumbnail as string} width={150} height={150} alt={image.alt_text} />
-          ) : (<></>)}
+        <div className='character-card__background-image' style={{ backgroundImage: `url(${imageThumbnail})`, }}></div>
+        <div className='character-card__image-container'>
+          {imageThumbnail && (
+            <Image className='character-card__image' src={imageThumbnail as string} width={150} height={150} alt={image.alt_text} />
+          )}
         </div>
-        <div className='content-container'>
+        <div className='character-card__content-container'>
           <h3 className={comicNeue.className}>{post.title.rendered}</h3>
           <div
-            className="character-excerpt"
+            className='character-card__content-excerpt'
             dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.excerpt.rendered) }}
           ></div>
         </div>
