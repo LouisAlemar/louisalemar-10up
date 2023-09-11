@@ -40,7 +40,7 @@ const PageItem = () => {
   if (!page) return <div>Page not found</div>;
 
   return (
-    <main>
+    <main className='fade-in'>
       <h2>{page.title.rendered}</h2>
       <p
         dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(page.content.rendered) }}

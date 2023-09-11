@@ -34,18 +34,19 @@ const PagesList: React.FC = () => {
   return (
     <main>
       <h2 className={bangers.className}>Pages</h2>
-      <ul>
+
+      <div className="pages-container fade-in">
         {pages.map((page) => (
           <Link href={`/pages/${page.slug}`} key={page.id}>
-            <li>
+            <div>
               <h3>{page.title.rendered}</h3>
               <p
                 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(page.content.rendered) }}
               ></p>
-            </li>
+            </div>
           </Link>
         ))}
-      </ul>
+      </div>
     </main>
   );
 };

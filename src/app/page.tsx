@@ -30,7 +30,7 @@ const PostsList: React.FC = () => {
   }
 
   return (
-    <main>
+    <main className='fade-in'>
       <section>
         <h1 className={bangers.className}>Welcome To My Marvel Blog Site!</h1>
       </section>

@@ -38,11 +38,11 @@ const CharactersListPage: React.FC = () => {
     <main>
       <h2 className={bangers.className}>Posts</h2>
       <div className="post-item-container">
-        {posts.map((post) => {
+        {posts.map((post, index) => {
           const mediaObj = media.find((obj) => obj.id === post.featured_media)
           const imageThumbnail: string | undefined = mediaObj?.media_details.sizes.thumbnail.source_url
 
-          return <CharacterListingItem key={post.id} post={post} imageThumbnail={imageThumbnail} />
+          return <CharacterListingItem key={post.id} index={index} post={post} imageThumbnail={imageThumbnail} />
         })}
       </div>
     </main>
