@@ -7,7 +7,7 @@ import { Providers } from "@/redux/provider";
 const roboto = Roboto({ subsets: ['latin'], weight: ['400', '700'] })
 
 export const metadata: Metadata = {
-  title: 'Louis Alemar 10up Sample',
+  title: 'Louis Alemar - Marvel',
   description: 'A Marvel Blog Site',
 }
 

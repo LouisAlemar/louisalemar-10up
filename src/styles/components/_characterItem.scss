@@ -1,18 +1,38 @@
 .character-item-post {
-  // margin-bottom: 20px;
   .image-container {
     display: flex;
     justify-content: center;
+    margin-bottom: 30px;
+    img {
+      filter: drop-shadow(0 0 0.75rem $red-accent);
+      border-radius: 35px;
+    }
   }
   .content-container {
     h2 {
       color: $yellow-primary;
     }
-    .character-details {
-      background-color: $red-primary-30;
-      margin-bottom: 20px;
-      padding: 10px;
-      border-radius: 5px;
+    .character-content {
+      @media (min-width: $breakpoint-sm) {
+        display: flex;
+      }
+      .character-details {
+        background-color: $red-primary-30;
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        @media (min-width: $breakpoint-sm) {
+          margin-right: 20px;
+          width: 100%;
+        }
+      }
+      .character-bio {
+        p {
+          @media (min-width: $breakpoint-sm) {
+            text-align: left;
+          }
+        }
+      }
     }
   }
 }
