@@ -29,6 +29,11 @@ h3 {
   margin: 7px 0px;
 }
 
+h4 {
+  color: $yellow-accent;
+  font-size: 15px;
+}
+
 h6 {
   color: $white;
   text-align: center;
@@ -46,7 +51,7 @@ ul, ol {
 }
 
 strong {
-  color: $yellow-accent;
+  color: $yellow-primary;
   font-weight: 800;
   font-size: 15px;
 }
