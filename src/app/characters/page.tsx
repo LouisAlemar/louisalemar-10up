@@ -40,8 +40,7 @@ const CharactersListPage: React.FC = () => {
     if (savedScrollPosition !== null && savedScrollPosition !== '0') {
       setTimeout(() => {
         window.scrollTo({
-          top: parseInt(savedScrollPosition, 10),
-          behavior: "smooth"
+          top: parseInt(savedScrollPosition, 10)
         });
       }, 2500)
     }
