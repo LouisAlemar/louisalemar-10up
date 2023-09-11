@@ -6,6 +6,10 @@ export interface Post {
   guid: {
     rendered: string;
   };
+  acf: {
+    alias: string;
+    real_name: string;
+  }
   modified: string;
   modified_gmt: string;
   slug: string;

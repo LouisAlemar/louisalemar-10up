@@ -11,6 +11,7 @@ export default function CharacterListingItem({ index, post, imageThumbnail }: { 
   return (
     <article className={`character-item fade-in item-${index}`} key={post.id}>
       <Link href={`/characters/${post.slug}`} >
+        <div className='background-image' style={{ backgroundImage: `url(${imageThumbnail})`, }}></div>
         <div className='image-container'>
           <Image src={imageThumbnail as string} width={150} height={150} alt='' />
         </div>
