@@ -18,9 +18,7 @@ export default function CharacterListingItem({ index, post, image }: { index: nu
         <div className='image-container'>
           {imageThumbnail ? (
             <Image src={imageThumbnail as string} width={150} height={150} alt={image.alt_text} />
-          ) : (
-            <p>No Image Found!</p>
-          )}
+          ) : (<></>)}
         </div>
         <div className='content-container'>
           <h3 className={comicNeue.className}>{post.title.rendered}</h3>
