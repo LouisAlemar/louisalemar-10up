@@ -36,7 +36,7 @@ const CharactersListPage: React.FC = () => {
 
   return (
     <main>
-      <h2 className={bangers.className}>Posts</h2>
+      <h2 className={bangers.className}>Characters</h2>
       <div className="post-item-container">
         {posts.map((post, index) => {
           const mediaObj = media.find((obj) => obj.id === post.featured_media)

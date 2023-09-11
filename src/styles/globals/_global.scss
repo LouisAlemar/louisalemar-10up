@@ -54,6 +54,13 @@ p, ul, ol {
   line-height: 25px;
 }
 
+ul, ol {
+  @media (min-width: $breakpoint-sm) {
+    text-align: left;
+    margin-left: 30px;
+  }
+}
+
 strong {
   color: $yellow-accent;
   font-weight: 800;
