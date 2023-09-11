@@ -42,7 +42,7 @@ const CharactersListPage: React.FC = () => {
           const mediaObj = media.find((obj) => obj.id === post.featured_media)
           const imageThumbnail: string | undefined = mediaObj?.media_details.sizes.thumbnail.source_url
 
-          return <CharacterListingItem key={post.id} index={index} post={post} imageThumbnail={imageThumbnail} />
+          return <CharacterListingItem key={post.id} index={index} post={post} image={mediaObj} />
         })}
       </div>
     </main>

@@ -21,8 +21,10 @@ export default function CharacterItem({ post, image }: { post: Post, image: Medi
       </div>
       <div className="content-container">
         <h2 className={comicNeue.className}>{post.title.rendered}</h2>
-        <h5>Real Name: <br />{post.acf.real_name}</h5>
-        <h5>Alias: <br />{post.acf.alias}</h5>
+        <div className="character-details">
+          <h5><strong>Real Name:</strong> <br />{post.acf.real_name}</h5>
+          <h5><strong>Alias:</strong> <br />{post.acf.alias}</h5>
+        </div>
         <div
           className="character-bio"
           dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content.rendered) }}
