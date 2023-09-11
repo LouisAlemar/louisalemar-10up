@@ -13,6 +13,7 @@ export default function CharacterItem({ post, image }: { post: Post, image: Medi
   return (
     <article className='character-item-post fade-in' key={post.id}>
       <div className="image-container">
+        <div className='background-image' style={{ backgroundImage: `url(${imageThumbnail})`, }}></div>
         {imageThumbnail ? (
           <Image src={imageThumbnail} width={264} height={300} alt={image.alt_text} />
         ) : (
