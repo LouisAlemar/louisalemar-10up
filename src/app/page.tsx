@@ -30,7 +30,7 @@ const PostsList: React.FC = () => {
   }
 
   return (
-    <main className='fade-in'>
+    <main className='full-height padding-0 fade-in'>
       <section>
         <h1 className={bangers.className}>Welcome To My Marvel Blog Site!</h1>
       </section>
