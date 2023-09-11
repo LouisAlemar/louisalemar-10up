@@ -52,7 +52,19 @@ ul, ol {
 strong {
   color: $yellow-accent;
   font-weight: 800;
-  font-size: 15px
+  font-size: 15px;
+}
+
+span {
+  color: $white;
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.padding-0 {
+  padding: 0;
 }
 
 .fade-in {

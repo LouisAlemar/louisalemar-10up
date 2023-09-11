@@ -25,11 +25,11 @@ export default function CharacterItem({ post, image }: { post: Post, image: Medi
         <div className="character-content">
           <aside className="character-details">
             {post.acf.real_name ? (
-              <h5><strong>Real Name:</strong> <br />{post.acf.real_name}</h5>
+              <h5><strong>Real Name:</strong> <br /><span>{post.acf.real_name}</span></h5>
             ) : (<></>)}
 
             {post.acf.alias ? (
-              <h5><strong>Alias:</strong> <br />{post.acf.alias}</h5>
+              <h5><strong>Alias:</strong> <br /><span>{post.acf.alias}</span></h5>
             ) : (<></>)}
           </aside>
           <div
