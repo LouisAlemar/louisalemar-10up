@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Bangers } from 'next/font/google'
 
-import { fetchPosts, fetchImageById, selectAllPosts } from '@/features/posts';
+import { fetchPosts, selectAllPosts } from '@/features/posts';
 import { AppDispatch } from '@/redux/store';
 import { fetchMedia, selectAllMedia } from '@/features/media';
 import CharacterListingItem from '@/components/CharacterListingItem';
@@ -16,8 +16,8 @@ const CharactersListPage: React.FC = () => {
 
   // Fetch posts from the API when the component mounts
   useEffect(() => {
-    dispatch(fetchMedia());
     dispatch(fetchPosts());
+    dispatch(fetchMedia());
   }, [dispatch]);
 
   // Use the selector to get all posts from the state
@@ -40,7 +40,6 @@ const CharactersListPage: React.FC = () => {
       <div className="characters-item-container">
         {posts.map((post, index) => {
           const mediaObj = media.find((obj) => obj.id === post.featured_media)
-          const imageThumbnail: string | undefined = mediaObj?.media_details.sizes.thumbnail.source_url
 
           return <CharacterListingItem key={post.id} index={index} post={post} image={mediaObj} />
         })}

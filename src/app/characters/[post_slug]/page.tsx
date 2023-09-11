@@ -24,7 +24,6 @@ const CharacterItemPage = () => {
     selectMediaById(state, postImageId as any)
   );
 
-
   const postsStatus = useSelector((state: RootState) => {
     return fetchPostsStatus(state)
   })

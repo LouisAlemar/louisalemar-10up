@@ -70,5 +70,8 @@
   .content-container {
     z-index: 10;
     position: relative;
+    .character-excerpt {
+      text-align: center;
+    }
   }
 }

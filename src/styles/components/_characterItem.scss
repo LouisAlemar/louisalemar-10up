@@ -29,6 +29,8 @@
       color: $yellow-primary;
     }
     .character-content {
+      max-width: 1400px;
+      margin: 0 auto;
       @media (min-width: $breakpoint-sm) {
         display: flex;
       }
