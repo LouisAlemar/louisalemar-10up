@@ -1,7 +1,21 @@
 .character-item {
+  padding: 20px;
   margin-bottom: 20px;
   opacity: 0;
   transform: translateY(20px);
+  .background-image {
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    opacity: 0.3;
+  }
 
   &.item-0 {
     animation: fadeIn 1s .2s forwards;
@@ -37,8 +51,15 @@
   .image-container {
     display: flex;
     justify-content: center;
+    z-index: 10;
+    position: relative;
     img {
       border-radius: 100px;
+      border: 5px solid $white;
     }
+  }
+  .content-container {
+    z-index: 10;
+    position: relative;
   }
 }

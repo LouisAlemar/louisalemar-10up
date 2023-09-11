@@ -3,8 +3,10 @@
   .image-container {
     display: flex;
     justify-content: center;
-    // img {
-    //   border-radius: 100px;
-    // }
+  }
+  .content-container {
+    h2 {
+      color: $yellow-primary;
+    }
   }
 }
