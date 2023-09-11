@@ -9,6 +9,7 @@ const montserrat = Montserrat({ subsets: ['latin'], weight: ['400', '700'] })
 export const metadata: Metadata = {
   title: 'Louis Alemar - Marvel',
   description: 'A Marvel Blog Site',
+  viewport: 'width=device-width, initial-scale=1.0'
 }
 
 export default function RootLayout({
