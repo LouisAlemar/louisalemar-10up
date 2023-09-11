@@ -16,8 +16,8 @@ const CharactersListPage: React.FC = () => {
 
   // Fetch posts from the API when the component mounts
   useEffect(() => {
-    dispatch(fetchPosts());
     dispatch(fetchMedia());
+    dispatch(fetchPosts());
   }, [dispatch]);
 
   // Use the selector to get all posts from the state
