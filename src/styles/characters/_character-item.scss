@@ -1,0 +1,70 @@
+.character-item {
+  &__image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    position: relative;
+  }
+  &__background-image {
+    @media (min-width: $breakpoint-sm) {
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      opacity: 0.2;
+    }
+  }
+  &__image {
+    filter: drop-shadow(0 0 0.75rem $red-accent);
+    border-radius: 35px;
+  }
+  &__title {
+    color: $yellow-primary;
+  }
+  &__character-content {
+    max-width: 1400px;
+      margin: 0 auto;
+      @media (min-width: $breakpoint-sm) {
+        display: flex;
+      }
+      @media (min-width: $breakpoint-lg) {
+        padding: 0px 120px;
+      }
+      @media (min-width: $breakpoint-xl) {
+        padding: 0px 210px;
+      }
+  }
+  &__character-details {
+    background-color: $red-primary-30;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    @media (min-width: $breakpoint-sm) {
+      margin-right: 20px;
+      width: 100%;
+    }
+  }
+  &__character-bio {
+    p {
+      @media (min-width: $breakpoint-sm) {
+        text-align: left;
+      }
+    }
+    figure {
+      width: 100%;
+      img {
+        width: 100%;
+        height: auto;
+      }
+      figcaption {
+        color: $white;
+      }
+    }
+  }
+}

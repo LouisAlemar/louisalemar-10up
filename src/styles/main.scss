@@ -1,17 +1,18 @@
 // Global
-@import "./globals/reset";
 @import "./globals/variables";
+@import "./globals/reset";
 @import "./globals/global";
+
+// Characters Styles
+@import "./characters/character-card";
+@import "./characters/character-item";
 
 // Component-Specific
 @import "./components/nav";
 @import "./components/footer";
-@import "./components/characterListingItem";
-@import "./components/characterItem";
-
 
 // Page-Specific
 @import "./pages/home";
-@import "./pages/characters";
+
 
 

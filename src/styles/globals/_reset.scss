@@ -9,7 +9,8 @@
 
 /* Normalize typography */
 html {
-  font-size: 16px; /* Set a base font size for easier responsiveness */
+  font-size: 15px;
+  color-scheme: dark;
 }
 
 body {
@@ -17,8 +18,18 @@ body {
 }
 
 /* Remove underlines from links */
-a {
-  text-decoration: none;
+a:not([class]) {
+  text-decoration-thickness: max(0.08em, 1px);
+  text-underline-offset: 0.15em;
 }
 
-/* Additional reset or normalization styles can be added as needed */
+/* Scroll padding allowance above anchor links */
+:target {
+  scroll-padding-block-start: 2rem;
+}
+
+/* Scroll padding allowance below focused elements 
+  to ensure they are clearly in view */
+:focus {
+  scroll-padding-block-end: 8vh;
+}

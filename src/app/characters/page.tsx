@@ -40,7 +40,8 @@ const CharactersListPage: React.FC = () => {
     if (savedScrollPosition !== null && savedScrollPosition !== '0') {
       setTimeout(() => {
         window.scrollTo({
-          top: parseInt(savedScrollPosition, 10)
+          top: parseInt(savedScrollPosition, 10),
+          behavior: "smooth"
         });
       }, 2500)
     }
@@ -64,7 +65,7 @@ const CharactersListPage: React.FC = () => {
   return (
     <main>
       <h2 className={bangers.className}>Characters</h2>
-      <div className="characters-item-container">
+      <div className="characters-list">
         {posts.map((post, index) => {
           const mediaObj = media.find((obj) => obj.id === post.featured_media)
 
