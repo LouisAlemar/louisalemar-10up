@@ -53,12 +53,14 @@ const postsSlice = createSlice({
   initialState,
   reducers: {
     setAllPosts: postsAdapter.setAll,
+    removeAllPosts: postsAdapter.removeAll,
   },
   extraReducers: (builder) => {
     builder
       // Fetch Posts
       .addCase(fetchPosts.pending, (state) => {
         state.fetchPostsStatus = 'loading';
+        postsAdapter.removeAll(state)
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.fetchPostsStatus = 'succeeded';
