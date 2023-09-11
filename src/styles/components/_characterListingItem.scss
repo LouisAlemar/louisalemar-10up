@@ -2,26 +2,43 @@
   margin-bottom: 20px;
   opacity: 0;
   transform: translateY(20px);
-  animation-name: fadeIn;
-  animation-duration: 2s;
-  animation-fill-mode: forwards;
+
+  &.item-0 {
+    animation: fadeIn 1s .2s forwards;
+  }
+  &.item-1 {
+    animation: fadeIn 1s .6s forwards;
+  }
+  &.item-2 {
+    animation: fadeIn 1s 1s forwards;
+  }
+  &.item-3 {
+    animation: fadeIn 1s 1.4s forwards;
+  }
+  &.item-4 {
+    animation: fadeIn 1s 1.8s forwards;
+  }
+  &.item-5 {
+    animation: fadeIn 1s 2.2s forwards;
+  }
+  &.item-6 {
+    animation: fadeIn 1s 2.6s forwards;
+  }
+  &.item-7 {
+    animation: fadeIn 1s 3s forwards;
+  }
+  &.item-8 {
+    animation: fadeIn 1s 3.4s forwards;
+  }
+  &.item-9 {
+    animation: fadeIn 1s 3.8s forwards;
+  }
+
   .image-container {
     display: flex;
     justify-content: center;
     img {
       border-radius: 100px;
     }
-  }
-}
-
-/* Define the keyframes for fading in */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }

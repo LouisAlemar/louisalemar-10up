@@ -7,9 +7,10 @@ import { Post } from "@/features/posts/post.type";
 
 const comicNeue = Comic_Neue({ subsets: ['latin'], weight: ["400", "700"] })
 
-export default function CharacterListingItem({ post, imageThumbnail }: { post: Post, imageThumbnail: string | undefined }) {
+export default function CharacterListingItem({ index, post, imageThumbnail }: { index: number, post: Post, imageThumbnail: string | undefined }) {
+  // console.log(index, post)
   return (
-    <article className='character-item fadeIn' key={post.id}>
+    <article className={`character-item fade-in item-${index}`} key={post.id}>
       <Link href={`/characters/${post.slug}`} >
         <div className='image-container'>
           <Image src={imageThumbnail as string} width={150} height={150} alt='' />
