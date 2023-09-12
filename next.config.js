@@ -8,7 +8,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
+        protocol: 'https',
         hostname: 'wp.skyloproductions.com',
         port: '',
         pathname: '/wp-content/uploads/**',
