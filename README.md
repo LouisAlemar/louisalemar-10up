@@ -1,13 +1,3 @@
-## Getting Started
-
-Clone this repo and then run: 
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the project locally.
-
 ## Notes
 
 I built a Marvel blog site because I'm a huge Marvel fan! 
@@ -19,3 +9,14 @@ I also integrated CI/CD by adding a GitHub action which is running eslint everyt
 
 
 If you would like to log in to the Wordpress backend, use the credentials I provided in the email.
+
+## Getting Started
+
+Clone this repo and then run: 
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the project locally.
