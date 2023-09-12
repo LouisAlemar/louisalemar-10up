@@ -1,5 +1,7 @@
 ## Getting Started
 
+## Prerequisites
+
 First, run the development server:
 
 ```bash
