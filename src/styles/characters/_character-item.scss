@@ -49,6 +49,7 @@
         text-shadow: 1px 1px 10px $red-primary;
         width: 100%;
         text-align: left;
+        margin-bottom: 25px;
       }
       @media (min-width: $breakpoint-md) {
         display: flex;
@@ -65,8 +66,7 @@
           }
         }
         .wp-block-heading {
-          width: 100%;
-          text-align: left;
+          margin-bottom: 0px;
         }
         p {
           width: 100%;
