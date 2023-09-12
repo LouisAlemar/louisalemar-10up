@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic'
 export const revalidate = 0;
 
 export async function GET(request: Request) {
-  const res = await fetch("http://wp.skyloproductions.com/wp-json/wp/v2/posts");
+  const res = await fetch("http://wp.skyloproductions.com/wp-json/wp/v2/posts?per_page=100");
   const data = await res.json();
 
   return NextResponse.json(data);
