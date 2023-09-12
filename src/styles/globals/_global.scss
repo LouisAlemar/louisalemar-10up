@@ -16,7 +16,7 @@ h1 {
 h2 {
   color: $white;
   text-shadow: 2px 2px 2px $red-primary;
-  font-size: 39px;
+  font-size: 59px;
   text-align: center;
   margin-bottom: 10px;
 }
@@ -31,7 +31,7 @@ h3 {
 
 h4 {
   color: $yellow-accent;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 h6 {
@@ -39,10 +39,16 @@ h6 {
   text-align: center;
 }
 
+hr {
+  border: 0;
+  border-top: 5px solid $blue-accent;
+  margin: 60px 0;
+  border-style: inset;
+}
+
 p, ul, ol {
   color: $white;
   font-size: 15px;
-  margin-bottom: 20px;
   line-height: 25px;
 }
 
