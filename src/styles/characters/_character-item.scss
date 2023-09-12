@@ -29,16 +29,47 @@
   }
   &__character-content {
     max-width: 1400px;
-      margin: 0 auto;
-      @media (min-width: $breakpoint-sm) {
+    margin: 0 auto;
+    @media (min-width: $breakpoint-lg) {
+      padding: 0px 120px;
+    }
+    @media (min-width: $breakpoint-xl) {
+      padding: 0px 210px;
+    }
+    .wp-block-group {
+      margin-bottom: 50px;
+      .wp-block-heading {
+        color: $yellow-accent;
+        font-size: 35px;
+        text-shadow: 1px 1px 10px $red-primary;
+        width: 100%;
+        text-align: left;
+      }
+      @media (min-width: $breakpoint-md) {
         display: flex;
+        margin-bottom: 100px;
+        &:nth-child(odd) {
+          flex-direction: row-reverse;
+          p {
+            padding-right: 30px;
+          }
+        }
+        &:nth-child(even) {
+          .wp-block-heading {
+            padding-right: 30px;
+          }
+        }
+        .wp-block-heading {
+          width: 100%;
+          text-align: left;
+        }
+        p {
+          width: 100%;
+          display: flex;
+          align-items: center;
+        }
       }
-      @media (min-width: $breakpoint-lg) {
-        padding: 0px 120px;
-      }
-      @media (min-width: $breakpoint-xl) {
-        padding: 0px 210px;
-      }
+    }
   }
   &__character-details {
     background-color: $red-primary-30;
