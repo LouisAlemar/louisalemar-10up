@@ -8,7 +8,8 @@
     "start": "next start",
     "build:start": "npm run build && npm run start",
     "lint": "next lint",
-    "pa11y": "pa11y --ignore notice https://louisalemar-10up.vercel.app/"
+    "pa11y:dev": "pa11y --ignore notice http://localhost:3000/",
+    "pa11y:prod": "pa11y --ignore notice https://louisalemar-10up.vercel.app/"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
